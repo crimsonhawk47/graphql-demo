@@ -23,6 +23,23 @@ const resolvers = {
             }
             links.push(link)
             return link
+        },
+        delete: (parent, args) => {
+            const idToDelete = Number(args.id)
+            idCount--;
+            const deletedLink = links.splice(idToDelete, 1)[0]
+            console.log(deletedLink);
+            return deletedLink
+        },
+        update: (parent, args) => {
+            const index = args.id;
+            delete args.id
+            const oldLink = links[index]
+            newLink = { ...oldLink, ...args }
+            links[index] = newLink
+            console.log(links[index]);
+            return links[index]
+
         }
     }
 }
